@@ -1,17 +1,210 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Il mio sito su GitHub</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meerkats - Live Local, Think Global</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background-color: #ffffff;
+      color: #222;
+      line-height: 1.6;
+    }
+    header {
+      position: fixed;
+      width: 100%;
+      padding: 20px 40px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      background: #000;
+      color: white;
+      padding: 0 20px;
+      position: relative;
+    }
+    .hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 600px;
+    }
+    .section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+    }
+    .card {
+      background: #f8f8f8;
+      padding: 30px;
+      border-radius: 12px;
+      width: 300px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+    .cta-buttons {
+      margin-top: 30px;
+    }
+    .cta-buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 24px;
+      background-color: #222;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+    .cta-buttons a:hover {
+      background-color: #444;
+    }
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: #222;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 768px) {
+      .cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      .card {
+        width: 90%;
+      }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Benvenuto sul mio sito!</h1>
-    </header>
-    <main>
-        <p>Questo è un esempio di sito pubblicato con GitHub Pages.</p>
-    </main>
+  <header>
+    <div><strong>Meerkats</strong></div>
+    <nav>
+      <a href="#chi-siamo">Chi siamo</a>
+      <a href="#cosa-facciamo">Cosa facciamo</a>
+      <a href="#area-riservata">Area riservata</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <video autoplay muted loop>
+      <source src="video-placeholder.mp4" type="video/mp4">
+      Il tuo browser non supporta i video HTML5.
+    </video>
+    <h1>Meerkats</h1>
+    <p>Live Local, Think Global.</p>
+    <p>Educazione, formazione e strumenti digitali per crescere un progetto alla volta.</p>
+  </section>
+
+  <section class="section">
+    <div class="cards">
+      <div class="card">
+        <h2>Formazione Professionisti</h2>
+        <p>Percorsi formativi su misura per chi lavora nella relazione.</p>
+      </div>
+      <div class="card">
+        <h2>Scuole ed Enti</h2>
+        <p>Moduli educativi e progetti per cambiare la scuola dal basso.</p>
+      </div>
+      <div class="card">
+        <h2>Aziende</h2>
+        <p>Grafica, branding e AI per evolvere davvero il tuo team.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="chi-siamo" class="section">
+    <h2>Chi siamo</h2>
+    <p>Siamo un team multidisciplinare con competenze in educazione, grafica, intelligenza artificiale e progettazione. Crediamo nella forza del gruppo e nel potere degli strumenti giusti.</p>
+  </section>
+
+  <section id="cosa-facciamo" class="section">
+    <h2>Cosa facciamo</h2>
+    <p>Progettiamo esperienze formative e strumenti digitali che nascono dall'ibridazione tra educazione, tecnologia e design. Creiamo percorsi, toolkit e interventi che rispondono a bisogni reali.</p>
+  </section>
+
+  <section class="section">
+    <h2>Perché sceglierci</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Innovazione educativa</h3>
+        <p>Costruiamo progetti radicali, concreti e replicabili.</p>
+      </div>
+      <div class="card">
+        <h3>Tecnologia utile</h3>
+        <p>Usiamo AI, grafica e strumenti digitali per semplificare e potenziare.</p>
+      </div>
+      <div class="card">
+        <h3>Relazione e ascolto</h3>
+        <p>Crediamo nelle persone e nei processi, non nei power point.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Pronto a uscire dalla tua tana?</h2>
+    <div class="cta-buttons">
+      <a href="#">Parla con noi</a>
+      <a href="#">Prenota un incontro</a>
+      <a href="#">Scrivici</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Siamo Meerkats. E il futuro, lo esploriamo in branco.</p>
+    <p>&copy; 2025 Meerkats – Tutti i diritti riservati</p>
+  </footer>
 </body>
 </html>
