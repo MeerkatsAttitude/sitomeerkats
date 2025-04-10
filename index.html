@@ -1,178 +1,178 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Meerkats - Slideshow Scroll</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meerkats - Live Local, Think Global</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* Stili di base */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
     }
-
-    html, body {
-      height: 100%;
-      background-color: #0d0d1a;
-      color: #f2f2f2;
-      scroll-behavior: smooth;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
+    body {
+      line-height: 1.6;
+      color: #fff;
     }
-
-    section {
+    /* Effetto parallax */
+    .parallax {
       height: 100vh;
-      scroll-snap-align: start;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 40px 20px;
       text-align: center;
     }
-
+    /* Sezioni con immagini di sfondo diverse */
+    #hero {
+      background-image: url('path-to-hero-image.jpg');
+    }
+    #target {
+      background-image: url('path-to-target-image.jpg');
+    }
+    #chi-siamo {
+      background-image: url('path-to-chi-siamo-image.jpg');
+    }
+    #cosa-facciamo {
+      background-image: url('path-to-cosa-facciamo-image.jpg');
+    }
+    #perche-sceglierci {
+      background-image: url('path-to-perche-sceglierci-image.jpg');
+    }
+    #cta {
+      background-image: url('path-to-cta-image.jpg');
+    }
+    /* Stili per il contenuto delle sezioni */
+    .content {
+      max-width: 800px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+    }
     h1, h2 {
-      font-size: 3rem;
       margin-bottom: 20px;
     }
-
     p {
-      max-width: 600px;
-      font-size: 1.2rem;
-      line-height: 1.6;
+      margin-bottom: 10px;
     }
-
-    .cta-buttons {
-      margin-top: 30px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .cta-buttons a {
-      padding: 12px 24px;
-      border-radius: 30px;
-      background: #5D150F;
-      color: #ffffff;
-      font-weight: bold;
-      text-decoration: none;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .cta-buttons a:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(255, 204, 0, 0.4);
-    }
-
+    /* Stili per le card */
     .cards {
       display: flex;
+      justify-content: space-around;
       flex-wrap: wrap;
+    }
+    .card {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 10px;
+      width: 30%;
+      margin: 10px;
+    }
+    /* Stili per i pulsanti */
+    .buttons {
+      display: flex;
       justify-content: center;
       gap: 20px;
-      margin-top: 30px;
     }
-
-    .card {
-      background: #1e1e2f;
-      padding: 30px;
-      border-radius: 12px;
-      width: 280px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s;
+    .button {
+      padding: 10px 20px;
+      background: #fff;
+      color: #000;
+      text-decoration: none;
+      border-radius: 5px;
     }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
+    /* Media query per dispositivi mobili */
     @media (max-width: 768px) {
-      h1, h2 {
-        font-size: 2.2rem;
-      }
-
-      p {
-        font-size: 1rem;
-      }
-
       .card {
-        width: 90%;
+        width: 100%;
       }
-
-      .cta-buttons a {
-        font-size: 0.95rem;
+      .buttons {
+        flex-direction: column;
       }
     }
   </style>
-      <div><strong>Meerkats</strong></div>
-    <nav>
-      <a href="#chi-siamo">Chi siamo</a>
-      <a href="#cosa-facciamo">Cosa facciamo</a>
-      <a href="#area-riservata">Area riservata</a>
-      <a href="#contatti">Contatti</a>
-    </nav> 
 </head>
 <body>
 
-  <!-- 1. Titolo -->
-  <section id="intro">
-    <h1>Meerkats</h1>
-    <p>Live Local, Think Global.</p>
-    <p>Educazione, formazione e strumenti digitali per crescere un progetto alla volta.</p>
-  </section>
-
-  <!-- 2. Target -->
-  <section id="target">
-    <h2>Scegli il tuo percorso</h2>
-    <div class="cta-buttons">
-      <a href="#">Formazione Professionisti</a>
-      <a href="#">Scuole ed Enti</a>
-      <a href="#">Aziende</a>
+  <!-- Sezione Hero -->
+  <section id="hero" class="parallax">
+    <div class="content">
+      <h1>Meerkats</h1>
+      <p>Live Local, Think Global.</p>
+      <p>Educazione, formazione e strumenti digitali per crescere un progetto alla volta.</p>
     </div>
   </section>
 
-  <!-- 3. Chi siamo -->
-  <section id="chi-siamo">
-    <h2>Chi siamo</h2>
-    <p>Siamo un team multidisciplinare con competenze in educazione, grafica, intelligenza artificiale e progettazione. Crediamo nella forza del gruppo e nel potere degli strumenti giusti.</p>
-  </section>
-
-  <!-- 4. Cosa facciamo -->
-  <section id="cosa-facciamo">
-    <h2>Cosa facciamo</h2>
-    <p>Progettiamo esperienze formative e strumenti digitali che nascono dall'ibridazione tra educazione, tecnologia e design. Creiamo percorsi, toolkit e interventi che rispondono a bisogni reali.</p>
-  </section>
-
-  <!-- 5. Perché sceglierci -->
-  <section id="perche">
-    <h2>Perché sceglierci</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Innovazione educativa</h3>
-        <p>Progetti radicali, concreti e replicabili.</p>
-      </div>
-      <div class="card">
-        <h3>Tecnologia utile</h3>
-        <p>AI, grafica e strumenti digitali per potenziare davvero.</p>
-      </div>
-      <div class="card">
-        <h3>Relazione e ascolto</h3>
-        <p>Crediamo nelle persone e nei processi, non nei power point.</p>
+  <!-- Sezione Target -->
+  <section id="target" class="parallax">
+    <div class="content">
+      <h2>Target</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Formazione Professionisti</h3>
+          <p>Percorsi formativi su misura per chi lavora nella relazione.</p>
+        </div>
+        <div class="card">
+          <h3>Scuole ed Enti</h3>
+          <p>Moduli educativi e progetti per cambiare la scuola dal basso.</p>
+        </div>
+        <div class="card">
+          <h3>Aziende</h3>
+          <p>Grafica, branding e AI per evolvere davvero il tuo team.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 6. CTA finale -->
-  <section id="cta">
-    <h2>Pronto a uscire dalla tua tana?</h2>
-    <div class="cta-buttons">
-      <a href="#">Parla con noi</a>
-      <a href="#">Prenota un incontro</a>
-      <a href="#">Scrivici</a>
+  <!-- Sezione Chi Siamo -->
+  <section id="chi-siamo" class="parallax">
+    <div class="content">
+      <h2>Chi siamo</h2>
+      <p>Siamo un team multidisciplinare con competenze in educazione, grafica, intelligenza artificiale e progettazione. Crediamo nella forza del gruppo e nel potere degli strumenti giusti.</p>
     </div>
   </section>
 
-</body>
-</html>
+  <!-- Sezione Cosa Facciamo -->
+  <section id="cosa-facciamo" class="parallax">
+    <div class="content">
+      <h2>Cosa facciamo</h2>
+      <p>Progettiamo esperienze formative e strumenti digitali che nascono dall'ibridazione tra educazione, tecnologia e design. Creiamo percorsi, toolkit e interventi che rispondono a bisogni reali.</p>
+    </div>
+  </section>
+
+  <!-- Sezione Perché Sceglierci -->
+  <section id="perche-sceglierci" class="parallax">
+    <div class="content">
+      <h2>Perché sceglierci</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Innovazione educativa</h3>
+          <p>Costruiamo progetti radicali, concreti e replicabili.</p>
+        </div>
+        <div class="card">
+          <h3>Tecnologia utile</h3>
+          <p>Usiamo AI, grafica e strumenti digitali per semplificare e potenziare.</p>
+        </div>
+        <div class="card">
+          <h3>Relazione e ascolto</h3>
+          <p>Crediamo nelle persone e nei processi, non nei power point.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sezione Call to Action -->
+  <section id="cta" class="parallax">
+    <div class="content">
+      <h2>Pronto a uscire dalla tua tana?</h2>
+      <div class="buttons">
+        <a href="#" class="button">Parla con noi</a>
+        <a href="#" class="button">Prenota un incontro
+::contentReference[oaicite:3]{index=3}
+ 
