@@ -1,225 +1,49 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meerkats - Live Local, Think Global</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-    body {
-      background-color: #000019;
-      color: #f4f4f4;
-      line-height: 1.6;
-      scroll-behavior: smooth;
-    }
-    header {
-      position: fixed;
-      width: 100%;
-      padding: 20px 40px;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(8px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 10;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #f4f4f4;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #ffcc00;
-    }
-    .hero {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-      background: #000019;
-      color: white;
-      padding: 0 20px;
-    }
-    .hero h1 {
-      font-size: 4rem;
-      margin-bottom: 10px;
-      animation: fadeInDown 1s ease-out;
-    }
-    .hero p {
-      font-size: 1.4rem;
-      max-width: 600px;
-      opacity: 0.9;
-      animation: fadeIn 2s ease-out;
-    }
-    .section {
-      padding: 80px 20px;
-      max-width: 1000px;
-      margin: auto;
-      text-align: center;
-      background: #000019;
-    }
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      gap: 20px;
-    }
-    .card {
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 12px;
-      width: 300px;
-      color: #222;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-    }
-    .cta-buttons {
-      margin-top: 30px;
-    }
-    .cta-buttons a {
-      display: inline-block;
-      margin: 10px;
-      padding: 14px 28px;
-      background: #c71111;
-      color: #ffffff;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 30px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .cta-buttons a:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-      background: #4F0606;
-    }
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      background: #111;
-      color: #aaa;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 768px) {
-      .cards {
-        flex-direction: column;
-        align-items: center;
-      }
-      .card {
-        width: 90%;
-      }
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      .hero p {
-        font-size: 1.1rem;
-      }
-    }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-  </style>
-</head>
 <body>
-  <header>
-    <!--
-    <div><strong>Meerkats</strong></div>
-    <nav>
-      <a href="#chi-siamo">Chi siamo</a>
-      <a href="#cosa-facciamo">Cosa facciamo</a>
-      <a href="#area-riservata">Area riservata</a>
-      <a href="#contatti">Contatti</a>
-    </nav> 
-    -->
-    
-  </header>
-
-  <section class="hero">
+  <!-- 1. Titolo e sottotitoli -->
+  <section id="intro" class="section full-height">
     <h1>Meerkats</h1>
     <p>Live Local, Think Global.</p>
     <p>Educazione, formazione e strumenti digitali per crescere un progetto alla volta.</p>
   </section>
 
-  <section class="section">
-    <div class="cards">
-      <div class="card">
-        <h2>Formazione Professionisti</h2>
-        <p>Percorsi formativi su misura per chi lavora nella relazione.</p>
-      </div>
-      <div class="card">
-        <h2>Scuole ed Enti</h2>
-        <p>Moduli educativi e progetti per cambiare la scuola dal basso.</p>
-      </div>
-      <div class="card">
-        <h2>Aziende</h2>
-        <p>Grafica, branding e AI per evolvere davvero il tuo team.</p>
-      </div>
+  <!-- 2. Tre bottoni -->
+  <section id="target" class="section full-height">
+    <div class="cta-buttons">
+      <a href="#">Formazione Professionisti</a>
+      <a href="#">Scuole ed Enti</a>
+      <a href="#">Aziende</a>
     </div>
   </section>
 
+  <!-- 3. Chi siamo -->
   <section id="chi-siamo" class="section">
     <h2>Chi siamo</h2>
     <p>Siamo un team multidisciplinare con competenze in educazione, grafica, intelligenza artificiale e progettazione. Crediamo nella forza del gruppo e nel potere degli strumenti giusti.</p>
   </section>
 
+  <!-- 4. Cosa facciamo -->
   <section id="cosa-facciamo" class="section">
     <h2>Cosa facciamo</h2>
     <p>Progettiamo esperienze formative e strumenti digitali che nascono dall'ibridazione tra educazione, tecnologia e design. Creiamo percorsi, toolkit e interventi che rispondono a bisogni reali.</p>
   </section>
 
-  <section class="section">
+  <!-- 5. Perché sceglierci -->
+  <section id="perche" class="section">
     <h2>Perché sceglierci</h2>
     <div class="cards">
-      <div class="card">
-        <h3>Innovazione educativa</h3>
-        <p>Costruiamo progetti radicali, concreti e replicabili.</p>
-      </div>
-      <div class="card">
-        <h3>Tecnologia utile</h3>
-        <p>Usiamo AI, grafica e strumenti digitali per semplificare e potenziare.</p>
-      </div>
-      <div class="card">
-        <h3>Relazione e ascolto</h3>
-        <p>Crediamo nelle persone e nei processi, non nei power point.</p>
-      </div>
+      <div class="card"><h3>Innovazione educativa</h3><p>Progetti radicali e replicabili.</p></div>
+      <div class="card"><h3>Tecnologia utile</h3><p>AI e strumenti digitali concreti.</p></div>
+      <div class="card"><h3>Relazione e ascolto</h3><p>Crediamo nei processi, non nei power point.</p></div>
     </div>
   </section>
 
-  <section class="section">
+  <!-- 6. CTA finale -->
+  <section id="cta" class="section">
     <h2>Pronto a uscire dalla tua tana?</h2>
     <div class="cta-buttons">
       <a href="#">Parla con noi</a>
       <a href="#">Prenota un incontro</a>
-      <a href="mailto:meerkatsattitude@gmail.com">Scrivici</a>
+      <a href="#">Scrivici</a>
     </div>
   </section>
-
-  <footer>
-    <p>Siamo Meerkats. E il futuro, lo esploriamo in branco.</p>
-    <p>&copy; 2025 Meerkats – Tutti i diritti riservati</p>
-  </footer>
 </body>
-</html>
-
