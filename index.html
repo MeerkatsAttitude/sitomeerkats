@@ -99,6 +99,14 @@
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
       transition: transform 1s;
     }
+    .card-img {
+      width: 80px; /* piccola ma visibile */
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%; /* oppure 12px se preferisci rettangolare */
+      margin-bottom: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
 
     .card:hover {
       transform: translateY(-10px);
@@ -144,15 +152,18 @@
     <h2>Scegli il tuo percorso</h2>
     <div class="cards">
       <div class="card">
+        <img src="formazione.jpeg" alt="Scuole ed Enti" class="card-img">
         <h3>Formazione Professionisti</h3>
         <p>Progetti radicali, concreti e replicabili.</p>
       </div>
       <div class="card">
+        <img src="scuola.jpeg" alt="Scuole ed Enti" class="card-img">
         <h3>Scuole ed Enti</h3>
         <p>AI, grafica e strumenti digitali per potenziare davvero.</p>
       </div>
       <div class="card">
         <h3>Aziende</h3>
+        <img src="azienda.jpeg" alt="Scuole ed Enti" class="card-img">
         <p>Crediamo nelle persone e nei processi, non nei power point.</p>
       </div>
     </div>
