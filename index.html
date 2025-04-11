@@ -1,194 +1,178 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="it">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; min-height: 15.0px}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meerkats - Slideshow Scroll</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      background-color: #0d0d1a;
+      color: #f2f2f2;
+      scroll-behavior: smooth;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
+
+    section {
+      height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    h1, h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      max-width: 600px;
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .cta-buttons {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .cta-buttons a {
+      padding: 12px 24px;
+      border-radius: 30px;
+      background: #5D150F;
+      color: #ffffff;
+      font-weight: bold;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .cta-buttons a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(255, 204, 0, 0.4);
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: #1e1e2f;
+      padding: 30px;
+      border-radius: 12px;
+      width: 280px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    @media (max-width: 768px) {
+      h1, h2 {
+        font-size: 2.2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .card {
+        width: 90%;
+      }
+
+      .cta-buttons a {
+        font-size: 0.95rem;
+      }
+    }
   </style>
+      <div><strong>Meerkats</strong></div>
+    <nav>
+      <a href="#chi-siamo">Chi siamo</a>
+      <a href="#cosa-facciamo">Cosa facciamo</a>
+      <a href="#area-riservata">Area riservata</a>
+      <a href="#contatti">Contatti</a>
+    </nav> 
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="it"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Meerkats - Slideshow Scroll&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>* {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-sizing: border-box;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Inter', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>html, body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background-color: #0d0d1a;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #f2f2f2;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>scroll-behavior: smooth;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>overflow-y: scroll;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>scroll-snap-type: y mandatory;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>section {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 100vh;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>scroll-snap-align: start;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 40px 20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>h1, h2 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 3rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>p {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: 600px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.6;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.cta-buttons {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.cta-buttons a {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 12px 24px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #5D150F;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #ffffff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transition: transform 0.3s ease, box-shadow 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.cta-buttons a:hover {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform: translateY(-3px);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 6px 15px rgba(255, 204, 0, 0.4);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.cards {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-wrap: wrap;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>gap: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #1e1e2f;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 280px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transition: transform 0.3s;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card:hover {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform: translateY(-5px);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 768px) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>h1, h2 {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>font-size: 2.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>p {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>font-size: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>.card {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>width: 90%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>.cta-buttons a {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>font-size: 0.95rem;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;&lt;strong&gt;Meerkats&lt;/strong&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;nav&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#chi-siamo"&gt;Chi siamo&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#cosa-facciamo"&gt;Cosa facciamo&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#area-riservata"&gt;Area riservata&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#contatti"&gt;Contatti&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;<span class="Apple-converted-space"> </span></p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- 1. Titolo --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section id="intro"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Meerkats&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;Live Local, Think Global.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;Educazione, formazione e strumenti digitali per crescere un progetto alla volta.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- 2. Target --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section id="target"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Scegli il tuo percorso&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="cta-buttons"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#"&gt;Formazione Professionisti&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#"&gt;Scuole ed Enti&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#"&gt;Aziende&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- 3. Chi siamo --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section id="chi-siamo"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Chi siamo&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;Siamo un team multidisciplinare con competenze in educazione, grafica, intelligenza artificiale e progettazione. Crediamo nella forza del gruppo e nel potere degli strumenti giusti.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- 4. Cosa facciamo --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section id="cosa-facciamo"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Cosa facciamo&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;Progettiamo esperienze formative e strumenti digitali che nascono dall'ibridazione tra educazione, tecnologia e design. Creiamo percorsi, toolkit e interventi che rispondono a bisogni reali.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- 5. Perché sceglierci --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section id="perche"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Perché sceglierci&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="cards"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Innovazione educativa&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Progetti radicali, concreti e replicabili.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Tecnologia utile&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;AI, grafica e strumenti digitali per potenziare davvero.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;Relazione e ascolto&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Crediamo nelle persone e nei processi, non nei power point.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- 6. CTA finale --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section id="cta"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Pronto a uscire dalla tua tana?&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="cta-buttons"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#"&gt;Parla con noi&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#"&gt;Prenota un incontro&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="#"&gt;Scrivici&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+  <!-- 1. Titolo -->
+  <section id="intro">
+    <h1>Meerkats</h1>
+    <p>Live Local, Think Global.</p>
+    <p>Educazione, formazione e strumenti digitali per crescere un progetto alla volta.</p>
+  </section>
+
+  <!-- 2. Target -->
+  <section id="target">
+    <h2>Scegli il tuo percorso</h2>
+    <div class="cta-buttons">
+      <a href="#">Formazione Professionisti</a>
+      <a href="#">Scuole ed Enti</a>
+      <a href="#">Aziende</a>
+    </div>
+  </section>
+
+  <!-- 3. Chi siamo -->
+  <section id="chi-siamo">
+    <h2>Chi siamo</h2>
+    <p>Siamo un team multidisciplinare con competenze in educazione, grafica, intelligenza artificiale e progettazione. Crediamo nella forza del gruppo e nel potere degli strumenti giusti.</p>
+  </section>
+
+  <!-- 4. Cosa facciamo -->
+  <section id="cosa-facciamo">
+    <h2>Cosa facciamo</h2>
+    <p>Progettiamo esperienze formative e strumenti digitali che nascono dall'ibridazione tra educazione, tecnologia e design. Creiamo percorsi, toolkit e interventi che rispondono a bisogni reali.</p>
+  </section>
+
+  <!-- 5. Perché sceglierci -->
+  <section id="perche">
+    <h2>Perché sceglierci</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Innovazione educativa</h3>
+        <p>Progetti radicali, concreti e replicabili.</p>
+      </div>
+      <div class="card">
+        <h3>Tecnologia utile</h3>
+        <p>AI, grafica e strumenti digitali per potenziare davvero.</p>
+      </div>
+      <div class="card">
+        <h3>Relazione e ascolto</h3>
+        <p>Crediamo nelle persone e nei processi, non nei power point.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CTA finale -->
+  <section id="cta">
+    <h2>Pronto a uscire dalla tua tana?</h2>
+    <div class="cta-buttons">
+      <a href="#">Parla con noi</a>
+      <a href="#">Prenota un incontro</a>
+      <a href="#">Scrivici</a>
+    </div>
+  </section>
+
 </body>
 </html>
