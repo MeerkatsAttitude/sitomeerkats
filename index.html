@@ -127,12 +127,24 @@
 
       .card {
         width: 100%;
+        background: 
       }
 
       .cta-buttons a {
         font-size: 0.95rem;
       }
     }
+.card-with-bg {
+  background-image: url('scuola-bianco.png');
+  background-size: cover;       /* Copre tutto lo spazio della card */
+  background-position: center;  /* Centra l'immagine */
+  background-repeat: no-repeat; /* Non ripete l'immagine */
+  padding: 20px;                /* Spazio interno per il testo */
+  color: white;                 /* Cambia se serve contrasto con l'immagine */
+  border-radius: 10px;          /* Se vuoi bordi arrotondati */
+}
+
+
   </style>
   <!--    <div><strong>Meerkats</strong></div> -->
   <!--  <nav>
@@ -155,11 +167,18 @@
   <section id="target">
     <h2>Scegli il tuo percorso</h2>
     <div class="cards">
-      <div class="card">
+   <!--   <div class="card">
         <img src="scuola-bianco.png" alt="Scuole ed Enti" class="card-img">
         <h3>Formazione Professionisti</h3>
-        <!-- <p>Progetti radicali, concreti e replicabili.</p> -->
+        <!-- <p>Progetti radicali, concreti e replicabili.</p>
       </div>
+    -->
+    <div class="card card-with-bg">
+      <h3>Formazione Professionisti</h3>
+      <!-- <p>Progetti radicali, concreti e replicabili.</p> -->
+    </div>
+
+
       <div class="card">
         <img src="scuola.jpeg" alt="Scuole ed Enti" class="card-img">
         <h3>Scuole ed Enti</h3>
