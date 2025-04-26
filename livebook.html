@@ -38,7 +38,22 @@
 
 <section id="livebook">
 
-  <div id="flipbook"></div>
+  <div id="flipbook">
+    <!-- 13 pagine -->
+    <div class="page"></div> <!-- copertina -->
+    <div class="page"></div> <!-- doppia -->
+    <div class="page"></div>
+    <div class="page"></div> <!-- doppia -->
+    <div class="page"></div>
+    <div class="page"></div> <!-- doppia -->
+    <div class="page"></div>
+    <div class="page"></div> <!-- doppia -->
+    <div class="page"></div>
+    <div class="page"></div> <!-- doppia -->
+    <div class="page"></div>
+    <div class="page"></div> <!-- doppia -->
+    <div class="page"></div> <!-- ultima pagina singola -->
+  </div>
 
   <div class="cta-buttons" style="margin-top: 40px;">
     <a href="index.html" class="button">Torna alla Home</a>
@@ -50,53 +65,67 @@
 <script src="pdfjs/pdf.js"></script>
 
 <script>
-const url = 'manuale.pdf'; // Sostituisci col tuo file corretto
+const url = 'manuale.pdf'; // Sostituisci con il tuo file
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs/pdf.worker.js';
 
 const flipbook = document.getElementById('flipbook');
 
-pdfjsLib.getDocument(url).promise.then(function(pdf) {
-  const totalPages = pdf.numPages;
-
-  let loadPage = (pageNum) => {
-    return pdf.getPage(pageNum).then(function(page) {
-      const viewport = page.getViewport({ scale: 1.5 });
-
-      const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
-      canvas.width = viewport.width;
-      canvas.height = viewport.height;
-
-      const renderContext = {
-        canvasContext: context,
-        viewport: viewport
-      };
-
-      return page.render(renderContext).promise.then(() => {
-        const pageDiv = document.createElement('div');
-        pageDiv.className = 'page';
-        pageDiv.appendChild(canvas);
-        flipbook.appendChild(pageDiv);
-      });
-    });
-  };
-
-  let loadingPromises = [];
-  for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
-    loadingPromises.push(loadPage(pageNum));
+$('#flipbook').turn({
+  width: window.innerWidth * 0.8,
+  height: window.innerHeight * 0.8,
+  autoCenter: true,
+  elevation: 50,
+  gradients: true,
+  display: 'single', // mostriamo singola copertina all'inizio
+  pages: 13,
+  when: {
+    turning: function(event, page, view) {
+      loadPage(page);
+    },
+    turned: function(event, page, view) {
+      // Dopo la copertina, cambia a doppia pagina
+      if (page > 1) {
+        $('#flipbook').turn('display', 'double');
+      }
+    }
   }
+});
 
-  Promise.all(loadingPromises).then(() => {
-    $('#flipbook').turn({
-      width: window.innerWidth * 0.8,
-      height: window.innerHeight * 0.8,
-      autoCenter: true,
-      elevation: 50,
-      gradients: true
+let pdfDoc = null;
+
+pdfjsLib.getDocument(url).promise.then(function(pdf) {
+  pdfDoc = pdf;
+  loadPage(1); // Carichiamo la copertina
+});
+
+// Funzione per caricare una pagina
+function loadPage(pageNum) {
+  if (!pdfDoc) return;
+  if (pageNum < 1 || pageNum > pdfDoc.numPages) return;
+
+  const container = flipbook.children[pageNum - 1];
+  if (container.dataset.loaded) return; // Se già caricata, salta
+
+  pdfDoc.getPage(pageNum).then(function(page) {
+    const viewport = page.getViewport({ scale: 1.5 });
+
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+
+    const renderContext = {
+      canvasContext: context,
+      viewport: viewport
+    };
+
+    page.render(renderContext).promise.then(() => {
+      container.appendChild(canvas);
+      container.dataset.loaded = true;
     });
   });
-});
+}
 </script>
 
 </body>
