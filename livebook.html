@@ -114,3 +114,19 @@ function loadPage(pageNum) {
     const context = canvas.getContext('2d');
     canvas.width = viewport.width;
     canvas.height = viewport.height;
+
+    const renderContext = {
+      canvasContext: context,
+      viewport: viewport
+    };
+
+    page.render(renderContext).promise.then(() => {
+      container.appendChild(canvas);
+      container.dataset.loaded = true;
+    });
+  });
+}
+</script>
+
+</body>
+</html>
