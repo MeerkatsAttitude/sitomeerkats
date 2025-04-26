@@ -4,70 +4,100 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Livebook - Meerkats</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
     body {
-      overflow-y: scroll;
+      overflow-x: hidden;
+      background-color: #0d0d1a;
     }
-    #pdf-container {
-      width: 80%;
-      margin: 50px auto;
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    #flipbook {
+      width: 90%;
+      height: 90vh;
+      margin: 40px auto;
+      background: white;
+      box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+      border-radius: 10px;
+    }
+    .page {
+      background: white;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     canvas {
-      display: block;
-      margin: 0 auto 30px auto;
-      border: 1px solid #ccc;
-      border-radius: 10px;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
     }
   </style>
 </head>
 <body>
 
 <section id="livebook">
+  <h2 style="color: white;">Il tuo Livebook</h2>
 
-  <div id="pdf-container"></div>
+  <div id="flipbook"></div>
 
   <div class="cta-buttons" style="margin-top: 40px;">
-    <a href="index.html" class="button">Torna alla Home</a>
+    <a href="index.html" class="button">🏠 Torna alla Home</a>
   </div>
 </section>
 
-<!-- Importiamo PDF.js -->
+<!-- Librerie -->
 <script src="pdfjs/pdf.js"></script>
+<script src="turnjs/turn.min.js"></script>
+
 <script>
-  const url = 'manuale.pdf'; // il tuo file PDF
+const url = 'tuo-file.pdf'; // il tuo file
 
-  // Configura PDF.js
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs/pdf.worker.js';
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs/pdf.worker.js';
 
-  const container = document.getElementById('pdf-container');
+const flipbook = document.getElementById('flipbook');
 
-  // Carica il PDF
-  pdfjsLib.getDocument(url).promise.then(function(pdf) {
-    for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
-      pdf.getPage(pageNumber).then(function(page) {
-        const canvas = document.createElement('canvas');
-        container.appendChild(canvas);
+pdfjsLib.getDocument(url).promise.then(function(pdf) {
+  const totalPages = pdf.numPages;
 
-        const context = canvas.getContext('2d');
-        const viewport = page.getViewport({ scale: 1.5 });
+  let loadPage = (pageNum) => {
+    return pdf.getPage(pageNum).then(function(page) {
+      const viewport = page.getViewport({ scale: 1.5 });
 
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
 
-        const renderContext = {
-          canvasContext: context,
-          viewport: viewport
-        };
-        page.render(renderContext);
+      const renderContext = {
+        canvasContext: context,
+        viewport: viewport
+      };
+
+      return page.render(renderContext).promise.then(() => {
+        const pageDiv = document.createElement('div');
+        pageDiv.className = 'page';
+        pageDiv.appendChild(canvas);
+        flipbook.appendChild(pageDiv);
       });
-    }
+    });
+  };
+
+  let loadingPromises = [];
+  for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+    loadingPromises.push(loadPage(pageNum));
+  }
+
+  Promise.all(loadingPromises).then(() => {
+    $('#flipbook').turn({
+      width: window.innerWidth * 0.8,
+      height: window.innerHeight * 0.8,
+      autoCenter: true,
+      elevation: 50,
+      gradients: true
+    });
   });
+});
 </script>
 
 </body>
