@@ -52,61 +52,66 @@
 <script src="turnjs/turn.min.js"></script>
 <script src="pdfjs/pdf.js"></script>
 
-<!-- Script corretto -->
+<!-- Script definitivo -->
 <script>
-const url = 'manuale.pdf'; // <-- il tuo PDF
+const url = 'manuale.pdf'; // <-- il tuo file corretto
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs/pdf.worker.js';
 
 let pdfDoc = null;
+let images = []; // Memorizziamo tutte le immagini qui
 
 pdfjsLib.getDocument(url).promise.then(function(pdf) {
   pdfDoc = pdf;
 
-  const flipbook = document.getElementById('flipbook');
-
-  let loadedPages = 0;
+  let promises = [];
 
   for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
-    pdfDoc.getPage(pageNum).then(function(page) {
-      const viewport = page.getViewport({ scale: 1.5 });
+    promises.push(
+      pdfDoc.getPage(pageNum).then(function(page) {
+        const viewport = page.getViewport({ scale: 1.5 });
 
-      const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
-      canvas.width = viewport.width;
-      canvas.height = viewport.height;
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
 
-      const renderContext = {
-        canvasContext: context,
-        viewport: viewport
-      };
+        const renderContext = {
+          canvasContext: context,
+          viewport: viewport
+        };
 
-      page.render(renderContext).promise.then(function() {
-        const img = document.createElement('img');
-        img.src = canvas.toDataURL();
-        
-        const pageDiv = document.createElement('div');
-        pageDiv.className = 'page';
-        pageDiv.appendChild(img);
-        flipbook.appendChild(pageDiv);
-
-        loadedPages++;
-
-        // Quando tutte le immagini sono pronte
-        if (loadedPages === pdfDoc.numPages) {
-          $('#flipbook').turn({
-            width: window.innerWidth * 0.8,
-            height: window.innerHeight * 0.8,
-            autoCenter: true,
-            elevation: 50,
-            gradients: true,
-            display: 'double',   // <-- DOPPIA PAGINA FISSO
-            pages: pdfDoc.numPages,
-          });
-        }
-      });
-    });
+        return page.render(renderContext).promise.then(function() {
+          return canvas.toDataURL();
+        });
+      })
+    );
   }
+
+  Promise.all(promises).then(function(imagesData) {
+    // Tutte le immagini sono pronte
+    const flipbook = document.getElementById('flipbook');
+
+    imagesData.forEach(function(imgSrc) {
+      const pageDiv = document.createElement('div');
+      pageDiv.className = 'page';
+      const img = document.createElement('img');
+      img.src = imgSrc;
+      pageDiv.appendChild(img);
+      flipbook.appendChild(pageDiv);
+    });
+
+    // Ora avviamo Turn.js
+    $('#flipbook').turn({
+      width: window.innerWidth * 0.8,
+      height: window.innerHeight * 0.8,
+      autoCenter: true,
+      elevation: 50,
+      gradients: true,
+      display: 'double', // MODALITÀ DOPPIA PAGINA DIRETTA
+      pages: imagesData.length
+    });
+  });
 });
 </script>
 
