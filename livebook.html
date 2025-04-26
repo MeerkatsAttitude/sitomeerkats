@@ -38,79 +38,56 @@
 <body>
 
 <section id="livebook">
+  <h2 style="color: white;">Il tuo Livebook</h2>
 
-  <div id="flipbook"></div>
-
+  <div id="flipbook">
+    <!-- Pagina 1 -->
+    <div class="page">
+      <img src="img/page1.jpg" alt="Pagina 1">
+    </div>
+    <!-- Pagina 2 -->
+    <div class="page">
+      <img src="img/page2.jpg" alt="Pagina 2">
+    </div>
+    <!-- Pagina 3 -->
+    <div class="page">
+      <img src="img/page3.jpg" alt="Pagina 3">
+    </div>
+    <!-- Pagina 4 -->
+    <div class="page">
+      <img src="img/page4.jpg" alt="Pagina 4">
+    </div>
+    <!-- Pagina 5 -->
+    <div class="page">
+      <img src="img/page5.jpg" alt="Pagina 5">
+    </div>
+    <!-- Pagina 6 -->
+    <div class="page">
+      <img src="img/page6.jpg" alt="Pagina 6">
+   </div>
+        <!-- Pagina 7 -->
+    <div class="page">
+      <img src="img/page7.jpg" alt="Pagina 7">
+    </div>
   <div class="cta-buttons" style="margin-top: 40px;">
-    <a href="index.html" class="button">Torna alla Home</a>
+    <a href="index.html" class="button">🏠 Torna alla Home</a>
   </div>
 </section>
 
 <!-- Librerie -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="turnjs/turn.min.js"></script>
-<script src="pdfjs/pdf.js"></script>
 
-<!-- Script definitivo -->
+<!-- Script Flipbook Statico -->
 <script>
-const url = 'manuale.pdf'; // <-- il tuo file corretto
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs/pdf.worker.js';
-
-let pdfDoc = null;
-let images = []; // Memorizziamo tutte le immagini qui
-
-pdfjsLib.getDocument(url).promise.then(function(pdf) {
-  pdfDoc = pdf;
-
-  let promises = [];
-
-  for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
-    promises.push(
-      pdfDoc.getPage(pageNum).then(function(page) {
-        const viewport = page.getViewport({ scale: 1.5 });
-
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-
-        const renderContext = {
-          canvasContext: context,
-          viewport: viewport
-        };
-
-        return page.render(renderContext).promise.then(function() {
-          return canvas.toDataURL();
-        });
-      })
-    );
-  }
-
-  Promise.all(promises).then(function(imagesData) {
-    // Tutte le immagini sono pronte
-    const flipbook = document.getElementById('flipbook');
-
-    imagesData.forEach(function(imgSrc) {
-      const pageDiv = document.createElement('div');
-      pageDiv.className = 'page';
-      const img = document.createElement('img');
-      img.src = imgSrc;
-      pageDiv.appendChild(img);
-      flipbook.appendChild(pageDiv);
-    });
-
-    // Ora avviamo Turn.js
-    $('#flipbook').turn({
-      width: window.innerWidth * 0.8,
-      height: window.innerHeight * 0.8,
-      autoCenter: true,
-      elevation: 50,
-      gradients: true,
-      display: 'double', // MODALITÀ DOPPIA PAGINA DIRETTA
-      pages: imagesData.length
-    });
-  });
+$('#flipbook').turn({
+  width: window.innerWidth * 0.8,
+  height: window.innerHeight * 0.8,
+  autoCenter: true,
+  elevation: 50,
+  gradients: true,
+  display: 'double',
+  pages: $('#flipbook .page').length
 });
 </script>
 
