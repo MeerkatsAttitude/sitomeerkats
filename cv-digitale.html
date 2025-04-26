@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Stile extra solo per il carosello */
     .carousel-container {
       position: relative;
       width: 80%;
@@ -18,13 +17,19 @@
 
     .carousel-slide {
       display: flex;
-      transition: transform 0.5s ease-in-out;
+      transition: transform 1s ease-in-out, opacity 1s ease-in-out;
     }
 
     .carousel-item {
       min-width: 100%;
       box-sizing: border-box;
       text-align: center;
+      opacity: 0.7;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .carousel-item.active {
+      opacity: 1;
     }
 
     .carousel-item img {
@@ -128,7 +133,7 @@ Il quadro celebra il valore del percorso più che del risultato. L’opera invit
   </div>
 
   <div class="cta-buttons" style="margin-top: 40px;">
-    <a href="index.html" class="button">Torna alla Home</a>
+    <a href="index.html" class="button">🏠 Torna alla Home</a>
   </div>
 
 </section>
@@ -143,6 +148,7 @@ Il quadro celebra il valore del percorso più che del risultato. L’opera invit
 
   let counter = 0;
   const size = carouselItems[0].clientWidth;
+  let autoSlideInterval;
 
   // Crea i pallini
   carouselItems.forEach((item, index) => {
@@ -156,21 +162,50 @@ Il quadro celebra il valore del percorso più che del risultato. L’opera invit
 
   function updateCarousel() {
     carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    carouselItems.forEach(item => item.classList.remove('active'));
     dots.forEach(dot => dot.classList.remove('active'));
+    carouselItems[counter].classList.add('active');
     dots[counter].classList.add('active');
   }
 
-  nextBtn.addEventListener('click', () => {
-    if (counter >= carouselItems.length - 1) return;
-    counter++;
+  function nextSlide() {
+    counter = (counter + 1) % carouselItems.length;
     updateCarousel();
+  }
+
+  function prevSlide() {
+    counter = (counter - 1 + carouselItems.length) % carouselItems.length;
+    updateCarousel();
+  }
+
+  nextBtn.addEventListener('click', () => {
+    nextSlide();
+    resetAutoSlide();
   });
 
   prevBtn.addEventListener('click', () => {
-    if (counter <= 0) return;
-    counter--;
-    updateCarousel();
+    prevSlide();
+    resetAutoSlide();
   });
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      counter = index;
+      updateCarousel();
+      resetAutoSlide();
+    });
+  });
+
+  function autoSlide() {
+    autoSlideInterval = setInterval(nextSlide, 20000); // ogni 20 secondi
+  }
+
+  function resetAutoSlide() {
+    clearInterval(autoSlideInterval);
+    autoSlide();
+  }
+
+  autoSlide();
 
   // Swipe per mobile
   let startX;
@@ -187,12 +222,14 @@ Il quadro celebra il valore del percorso più che del risultato. L’opera invit
     const walk = x - startX;
 
     if (walk > 50) { // Swipe right
-      prevBtn.click();
+      prevSlide();
+      resetAutoSlide();
       isDragging = false;
     }
 
     if (walk < -50) { // Swipe left
-      nextBtn.click();
+      nextSlide();
+      resetAutoSlide();
       isDragging = false;
     }
   });
@@ -200,16 +237,8 @@ Il quadro celebra il valore del percorso più che del risultato. L’opera invit
   carouselSlide.addEventListener('touchend', () => {
     isDragging = false;
   });
-
-  // Dots click
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      counter = index;
-      updateCarousel();
-    });
-  });
-
 </script>
 
 </body>
 </html>
+
