@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Livebook - Meerkats</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      overflow-y: scroll;
+    }
+    #pdf-container {
+      width: 80%;
+      margin: 50px auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    }
+    canvas {
+      display: block;
+      margin: 0 auto 30px auto;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<section id="livebook">
+  <h2>Il tuo Livebook</h2>
+
+  <div id="pdf-container"></div>
+
+  <div class="cta-buttons" style="margin-top: 40px;">
+    <a href="index.html" class="button">Torna alla Home</a>
+  </div>
+</section>
+
+<!-- Importiamo PDF.js -->
+<script src="pdfjs/pdf.js"></script>
+<script>
+  const url = 'manuale.pdf'; // il tuo file PDF
+
+  // Configura PDF.js
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs/pdf.worker.js';
+
+  const container = document.getElementById('pdf-container');
+
+  // Carica il PDF
+  pdfjsLib.getDocument(url).promise.then(function(pdf) {
+    for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+      pdf.getPage(pageNumber).then(function(page) {
+        const canvas = document.createElement('canvas');
+        container.appendChild(canvas);
+
+        const context = canvas.getContext('2d');
+        const viewport = page.getViewport({ scale: 1.5 });
+
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderContext = {
+          canvasContext: context,
+          viewport: viewport
+        };
+        page.render(renderContext);
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
