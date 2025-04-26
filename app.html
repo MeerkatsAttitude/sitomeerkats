@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Livebook - Meerkats</title>
+  <link rel="stylesheet" href="style.css"> 
+  <style>
+    body {
+      margin: 0;
+      background-color: #0d0d1a;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    #viewerContainer {
+      width: 90%;
+      height: 90%;
+      background: white;
+      overflow: auto;
+      box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+    #pdf-viewer {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+
+<div id="viewerContainer">
+  <iframe id="pdf-viewer" src="app.pdf" frameborder="0" width="100%" height="100%"></iframe>
+</div>
+
+  <div class="cta-buttons" style="margin-top: 40px;">
+    <a href="index.html" class="button">Torna alla Home</a>
+  </div>
+
+</body>
+</html>
