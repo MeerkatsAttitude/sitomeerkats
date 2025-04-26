@@ -37,12 +37,11 @@
 <body>
 
 <section id="livebook">
-  <h2 style="color: white;">Il tuo Livebook</h2>
 
   <div id="flipbook"></div>
 
   <div class="cta-buttons" style="margin-top: 40px;">
-    <a href="index.html" class="button">🏠 Torna alla Home</a>
+    <a href="index.html" class="button">Torna alla Home</a>
   </div>
 </section>
 
@@ -58,19 +57,20 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs/pdf.worker.js';
 
 let pdfDoc = null;
 
-// Carichiamo il PDF
+// PRIMA carichiamo il PDF
 pdfjsLib.getDocument(url).promise.then(function(pdf) {
   pdfDoc = pdf;
 
-  // Crea dinamicamente tutte le pagine
+  // Ora CREIAMO TUTTE LE PAGINE PRIMA di avviare Turn.js
+  const flipbook = document.getElementById('flipbook');
   for (let i = 1; i <= pdfDoc.numPages; i++) {
     const pageDiv = document.createElement('div');
     pageDiv.className = 'page';
     pageDiv.setAttribute('data-page-number', i);
-    document.getElementById('flipbook').appendChild(pageDiv);
+    flipbook.appendChild(pageDiv);
   }
 
-  // Dopo aver creato tutte le pagine, inizializziamo Turn.js
+  // Ora inizializziamo Turn.js
   $('#flipbook').turn({
     width: window.innerWidth * 0.8,
     height: window.innerHeight * 0.8,
@@ -81,7 +81,8 @@ pdfjsLib.getDocument(url).promise.then(function(pdf) {
     pages: pdfDoc.numPages,
     when: {
       turning: function(event, page, view) {
-        loadPage(page);
+        loadPage(page);    // Quando sto per girare
+        if (page % 2 == 0) loadPage(page + 1); // Se giro pagina pari, carico anche la successiva
       },
       turned: function(event, page, view) {
         if (page > 1) {
@@ -91,20 +92,21 @@ pdfjsLib.getDocument(url).promise.then(function(pdf) {
     }
   });
 
-  // Carichiamo la prima pagina subito
+  // E carichiamo già la prima pagina e la seconda
   loadPage(1);
+  loadPage(2);
 });
 
-// Funzione per caricare la canvas nella pagina
+// Funzione che carica dinamicamente una pagina PDF
 function loadPage(pageNum) {
   if (!pdfDoc) return;
   if (pageNum < 1 || pageNum > pdfDoc.numPages) return;
 
   const container = document.querySelector('[data-page-number="' + pageNum + '"]');
-  if (!container || container.dataset.loaded) return; // se già caricata, skip
+  if (!container || container.dataset.loaded) return; // se già caricata, salta
 
   pdfDoc.getPage(pageNum).then(function(page) {
-    const viewport = page.getViewport({ scale: 1.5 });
+    const viewport = page.getViewport({ scale: 1.2 });
 
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
