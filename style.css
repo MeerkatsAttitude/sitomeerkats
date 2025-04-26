@@ -154,25 +154,6 @@ p {
   color: white;
   border-radius: 10px;
 }
-.carousel-item {
-  min-width: 100%;
-  box-sizing: border-box;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-.carousel-item.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.carousel-text {
-  text-align: center;
-  max-width: 80%;
-  margin: 0 auto;
-}
 /* Responsive per dispositivi mobili */
 @media (max-width: 768px) {
   h1, h2 {
