@@ -38,11 +38,12 @@
 <body>
 
 <section id="livebook">
+  <h2 style="color: white;">Il tuo Livebook</h2>
 
   <div id="flipbook"></div>
 
   <div class="cta-buttons" style="margin-top: 40px;">
-    <a href="index.html" class="button">Torna alla Home</a>
+    <a href="index.html" class="button">🏠 Torna alla Home</a>
   </div>
 </section>
 
@@ -51,9 +52,9 @@
 <script src="turnjs/turn.min.js"></script>
 <script src="pdfjs/pdf.js"></script>
 
-<!-- Script Flipbook Vero -->
+<!-- Script corretto -->
 <script>
-const url = 'manuale.pdf'; // <-- il tuo file PDF corretto
+const url = 'manuale.pdf'; // <-- il tuo PDF
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs/pdf.worker.js';
 
@@ -81,7 +82,6 @@ pdfjsLib.getDocument(url).promise.then(function(pdf) {
       };
 
       page.render(renderContext).promise.then(function() {
-        // Converte canvas in immagine base64
         const img = document.createElement('img');
         img.src = canvas.toDataURL();
         
@@ -92,7 +92,7 @@ pdfjsLib.getDocument(url).promise.then(function(pdf) {
 
         loadedPages++;
 
-        // Quando tutte le pagine sono pronte avviamo Turn.js
+        // Quando tutte le immagini sono pronte
         if (loadedPages === pdfDoc.numPages) {
           $('#flipbook').turn({
             width: window.innerWidth * 0.8,
@@ -100,15 +100,8 @@ pdfjsLib.getDocument(url).promise.then(function(pdf) {
             autoCenter: true,
             elevation: 50,
             gradients: true,
-            display: 'single',
+            display: 'double',   // <-- DOPPIA PAGINA FISSO
             pages: pdfDoc.numPages,
-            when: {
-              turned: function(event, page, view) {
-                if (page > 1) {
-                  $('#flipbook').turn('display', 'double');
-                }
-              }
-            }
           });
         }
       });
