@@ -172,4 +172,18 @@ p {
   .cta-buttons a {
     font-size: 0.95rem;
   }
+  .carousel-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+  text-align: center;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.carousel-item.active .carousel-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 }
