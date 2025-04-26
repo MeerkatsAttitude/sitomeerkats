@@ -4,92 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Livebook - Meerkats</title>
-  <link rel="stylesheet" href="style.css">
   <style>
     body {
-      overflow-x: hidden;
+      margin: 0;
       background-color: #0d0d1a;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
     }
-    #flipbook {
+    #viewerContainer {
       width: 90%;
-      height: 90vh;
-      margin: 40px auto;
+      height: 90%;
       background: white;
+      overflow: auto;
       box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
       border-radius: 10px;
+      margin-top: 20px;
     }
-    .page {
-      background: white;
+    #pdf-viewer {
       width: 100%;
-      height: 100%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      border-radius: 5px;
     }
   </style>
 </head>
 <body>
 
-<section id="livebook">
-  <h2 style="color: white;">Il tuo Livebook</h2>
+<h2>Il tuo Livebook</h2>
 
-  <div id="flipbook">
-    <!-- Pagina 1 -->
-    <div class="page">
-      <img src="img/page1.jpg" alt="Pagina 1">
-    </div>
-    <!-- Pagina 2 -->
-    <div class="page">
-      <img src="img/page2.jpg" alt="Pagina 2">
-    </div>
-    <!-- Pagina 3 -->
-    <div class="page">
-      <img src="img/page3.jpg" alt="Pagina 3">
-    </div>
-    <!-- Pagina 4 -->
-    <div class="page">
-      <img src="img/page4.jpg" alt="Pagina 4">
-    </div>
-    <!-- Pagina 5 -->
-    <div class="page">
-      <img src="img/page5.jpg" alt="Pagina 5">
-    </div>
-    <!-- Pagina 6 -->
-    <div class="page">
-      <img src="img/page6.jpg" alt="Pagina 6">
-   </div>
-        <!-- Pagina 7 -->
-    <div class="page">
-      <img src="img/page7.jpg" alt="Pagina 7">
-    </div>
-  <div class="cta-buttons" style="margin-top: 40px;">
-    <a href="index.html" class="button">🏠 Torna alla Home</a>
-  </div>
-</section>
+<div id="viewerContainer">
+  <iframe id="pdf-viewer" src="manuale.pdf" frameborder="0" width="100%" height="100%"></iframe>
+</div>
 
-<!-- Librerie -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="turnjs/turn.min.js"></script>
-
-<!-- Script Flipbook Statico -->
-<script>
-$('#flipbook').turn({
-  width: window.innerWidth * 0.8,
-  height: window.innerHeight * 0.8,
-  autoCenter: true,
-  elevation: 50,
-  gradients: true,
-  display: 'double',
-  pages: $('#flipbook .page').length
-});
-</script>
+<div style="margin: 20px;">
+  <a href="index.html" style="color: coral; font-weight: bold; text-decoration: none;">🏠 Torna alla Home</a>
+</div>
 
 </body>
 </html>
