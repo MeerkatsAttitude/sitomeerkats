@@ -154,24 +154,6 @@ p {
   color: white;
   border-radius: 10px;
 }
-
-/* Responsive per dispositivi mobili */
-@media (max-width: 768px) {
-  h1, h2 {
-    font-size: 2.2rem;
-  }
-
-  p {
-    font-size: 1rem;
-  }
-
-  .card {
-    width: 100%;
-  }
-
-  .cta-buttons a {
-    font-size: 0.95rem;
-  }
 .carousel-item {
   min-width: 100%;
   box-sizing: border-box;
@@ -191,7 +173,22 @@ p {
   max-width: 80%;
   margin: 0 auto;
 }
+/* Responsive per dispositivi mobili */
+@media (max-width: 768px) {
+  h1, h2 {
+    font-size: 2.2rem;
+  }
 
-}
+  p {
+    font-size: 1rem;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .cta-buttons a {
+    font-size: 0.95rem;
+  }
 
 }
