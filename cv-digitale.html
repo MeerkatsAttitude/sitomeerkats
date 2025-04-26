@@ -142,204 +142,104 @@
 </section>
 
 <script>
-  const carouselSlide = document.querySelector('.carousel-slide');
-  const carouselItems = document.querySelectorAll('.carousel-item');
-  const dotsContainer = document.getElementById('dots');
+const carouselSlide = document.querySelector('.carousel-slide');
+const carouselItems = document.querySelectorAll('.carousel-item');
+const dotsContainer = document.getElementById('dots');
 
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
 
-  let counter = 0;
-  let autoSlideInterval;
+let counter = 0;
+let autoSlideInterval;
 
-  // Crea i pallini
-  carouselItems.forEach((item, index) => {
-    const dot = document.createElement('span');
-    dot.classList.add('dot');
-    if (index === 0) dot.classList.add('active');
-    dotsContainer.appendChild(dot);
-  });
+// Crea i pallini
+carouselItems.forEach((item, index) => {
+  const dot = document.createElement('span');
+  dot.classList.add('dot');
+  if (index === 0) dot.classList.add('active');
+  dotsContainer.appendChild(dot);
+});
 
-  const dots = document.querySelectorAll('.dot');
+const dots = document.querySelectorAll('.dot');
 
-  function updateCarousel() {
-    carouselSlide.style.transform = 'translateX(' + (-counter * 100) + '%)';
-    carouselItems.forEach(item => item.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
+function updateCarousel() {
+  carouselSlide.style.transform = 'translateX(' + (-counter * 100) + '%)';
+  carouselItems.forEach(item => item.classList.remove('active'));
+  dots.forEach(dot => dot.classList.remove('active'));
 
-    carouselItems[counter].classList.add('active');
-    dots[counter].classList.add('active');
-  }
+  carouselItems[counter].classList.add('active');
+  dots[counter].classList.add('active');
+}
 
-  function nextSlide() {
-    counter = (counter + 1) % carouselItems.length;
+function nextSlide() {
+  counter = (counter + 1) % carouselItems.length;
+  updateCarousel();
+}
+
+function prevSlide() {
+  counter = (counter - 1 + carouselItems.length) % carouselItems.length;
+  updateCarousel();
+}
+
+nextBtn.addEventListener('click', () => {
+  nextSlide();
+  resetAutoSlide();
+});
+
+prevBtn.addEventListener('click', () => {
+  prevSlide();
+  resetAutoSlide();
+});
+
+dots.forEach((dot, index) => {
+  dot.addEventListener('click', () => {
+    counter = index;
     updateCarousel();
-  }
-
-  function prevSlide() {
-    counter = (counter - 1 + carouselItems.length) % carouselItems.length;
-    updateCarousel();
-  }
-
-  nextBtn.addEventListener('click', () => {
-    nextSlide();
     resetAutoSlide();
   });
+});
 
-  prevBtn.addEventListener('click', () => {
+function autoSlide() {
+  autoSlideInterval = setInterval(nextSlide, 20000); // 20 secondi
+}
+
+function resetAutoSlide() {
+  clearInterval(autoSlideInterval);
+  autoSlide();
+}
+
+autoSlide();
+
+// Swipe Mobile
+let startX;
+let isDragging = false;
+
+carouselSlide.addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+  isDragging = true;
+});
+
+carouselSlide.addEventListener('touchmove', e => {
+  if (!isDragging) return;
+  const x = e.touches[0].clientX;
+  const walk = x - startX;
+
+  if (walk > 50) { 
     prevSlide();
     resetAutoSlide();
-  });
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      counter = index;
-      updateCarousel();
-      resetAutoSlide();
-    });
-  });
-
-  function autoSlide() {
-    autoSlideInterval = setInterval(nextSlide, 20000);
-  }
-
-  function resetAutoSlide() {
-    clearInterval(autoSlideInterval);
-    autoSlide();
-  }
-
-  autoSlide();
-
-  // Swipe Mobile
-  let startX;
-  let isDragging = false;
-
-  carouselSlide.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-    isDragging = true;
-  });
-
-  carouselSlide.addEventListener('touchmove', e => {
-    if (!isDragging) return;
-    const x = e.touches[0].clientX;
-    const walk = x - startX;
-
-    if (walk > 50) { 
-      prevSlide();
-      resetAutoSlide();
-      isDragging = false;
-    }
-
-    if (walk < -50) {
-      nextSlide();
-      resetAutoSlide();
-      isDragging = false;
-    }
-  });
-
-  carouselSlide.addEventListener('touchend', () => {
     isDragging = false;
-  });
-</script>
-<script>
-  const carouselSlide = document.querySelector('.carousel-slide');
-  const carouselItems = document.querySelectorAll('.carousel-item');
-  const dotsContainer = document.getElementById('dots');
-
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-
-  let counter = 0;
-  let autoSlideInterval;
-
-  // Crea i pallini
-  carouselItems.forEach((item, index) => {
-    const dot = document.createElement('span');
-    dot.classList.add('dot');
-    if (index === 0) dot.classList.add('active');
-    dotsContainer.appendChild(dot);
-  });
-
-  const dots = document.querySelectorAll('.dot');
-
-  function updateCarousel() {
-    carouselSlide.style.transform = 'translateX(' + (-counter * 100) + '%)';
-    carouselItems.forEach(item => item.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
-
-    carouselItems[counter].classList.add('active');
-    dots[counter].classList.add('active');
   }
 
-  function nextSlide() {
-    counter = (counter + 1) % carouselItems.length;
-    updateCarousel();
-  }
-
-  function prevSlide() {
-    counter = (counter - 1 + carouselItems.length) % carouselItems.length;
-    updateCarousel();
-  }
-
-  nextBtn.addEventListener('click', () => {
+  if (walk < -50) {
     nextSlide();
     resetAutoSlide();
-  });
-
-  prevBtn.addEventListener('click', () => {
-    prevSlide();
-    resetAutoSlide();
-  });
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      counter = index;
-      updateCarousel();
-      resetAutoSlide();
-    });
-  });
-
-  function autoSlide() {
-    autoSlideInterval = setInterval(nextSlide, 20000);
-  }
-
-  function resetAutoSlide() {
-    clearInterval(autoSlideInterval);
-    autoSlide();
-  }
-
-  autoSlide();
-
-  // Swipe Mobile
-  let startX;
-  let isDragging = false;
-
-  carouselSlide.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-    isDragging = true;
-  });
-
-  carouselSlide.addEventListener('touchmove', e => {
-    if (!isDragging) return;
-    const x = e.touches[0].clientX;
-    const walk = x - startX;
-
-    if (walk > 50) { 
-      prevSlide();
-      resetAutoSlide();
-      isDragging = false;
-    }
-
-    if (walk < -50) {
-      nextSlide();
-      resetAutoSlide();
-      isDragging = false;
-    }
-  });
-
-  carouselSlide.addEventListener('touchend', () => {
     isDragging = false;
-  });
+  }
+});
+
+carouselSlide.addEventListener('touchend', () => {
+  isDragging = false;
+});
 </script>
 
 </body>
