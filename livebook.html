@@ -60,12 +60,13 @@
   </div>
 </section>
 
-<!-- Librerie -->
+<!-- Librerie in ordine corretto -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
 <script src="pdfjs/pdf.js"></script>
 
 <script>
-const url = 'manuale.pdf'; // Sostituisci con il tuo file
+const url = 'manuale.pdf'; // Cambia il nome se serve
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs/pdf.worker.js';
 
@@ -77,14 +78,13 @@ $('#flipbook').turn({
   autoCenter: true,
   elevation: 50,
   gradients: true,
-  display: 'single', // mostriamo singola copertina all'inizio
+  display: 'single',
   pages: 13,
   when: {
     turning: function(event, page, view) {
       loadPage(page);
     },
     turned: function(event, page, view) {
-      // Dopo la copertina, cambia a doppia pagina
       if (page > 1) {
         $('#flipbook').turn('display', 'double');
       }
@@ -99,13 +99,13 @@ pdfjsLib.getDocument(url).promise.then(function(pdf) {
   loadPage(1); // Carichiamo la copertina
 });
 
-// Funzione per caricare una pagina
+// Funzione che carica ogni pagina quando serve
 function loadPage(pageNum) {
   if (!pdfDoc) return;
   if (pageNum < 1 || pageNum > pdfDoc.numPages) return;
 
   const container = flipbook.children[pageNum - 1];
-  if (container.dataset.loaded) return; // Se già caricata, salta
+  if (container.dataset.loaded) return; // Se è già stata caricata, salta
 
   pdfDoc.getPage(pageNum).then(function(page) {
     const viewport = page.getViewport({ scale: 1.5 });
@@ -114,19 +114,3 @@ function loadPage(pageNum) {
     const context = canvas.getContext('2d');
     canvas.width = viewport.width;
     canvas.height = viewport.height;
-
-    const renderContext = {
-      canvasContext: context,
-      viewport: viewport
-    };
-
-    page.render(renderContext).promise.then(() => {
-      container.appendChild(canvas);
-      container.dataset.loaded = true;
-    });
-  });
-}
-</script>
-
-</body>
-</html>
