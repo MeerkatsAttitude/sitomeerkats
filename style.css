@@ -111,25 +111,30 @@ p {
   background: #ffffff;
   padding: 30px;
   border-radius: 12px;
-  width: 500px;
+  min-width: 300px; /* Larghezza minima */
+  max-width: 300px; /* Larghezza massima fissa */
   border-style: solid;
   border-color: coral;
   color: #000000;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
-  transition: transform 1s;
-  flex: 1 1 30%;
-  text-decoration: none; /* Per togliere sottolineature sui link */
+  transition: transform 0.5s, background-color 0.5s ease;
+  flex: 0 0 auto; /* Importante: niente crescita o restringimento */
+  animation: pulseColor 6s infinite ease-in-out;
+  text-decoration: none;
+  text-align: center;
 }
+
 
 /* Immagine dentro la card */
 .card-img {
-  width: 450px;
-  height: 300px;
+  width: 100%; /* Riempie tutta la card */
+  height: 200px;
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 15px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
 
 /* Hover sulla Card */
 .card:hover {
