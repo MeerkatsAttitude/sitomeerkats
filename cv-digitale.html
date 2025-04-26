@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CV Digitale - Meerkats</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Stile extra solo per il carosello */
+    .carousel-container {
+      position: relative;
+      width: 80%;
+      max-width: 900px;
+      margin: 50px auto;
+      overflow: hidden;
+    }
+
+    .carousel-slide {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+      min-width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .carousel-item p {
+      font-size: 1.2rem;
+      color: #f2f2f2;
+    }
+
+    .carousel-buttons {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .carousel-buttons button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      background: coral;
+      color: white;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .carousel-buttons button:hover {
+      background: #ff7f50;
+    }
+  </style>
+</head>
+<body>
+
+<section id="cv-digitale">
+  <h2>Il tuo CV Digitale</h2>
+
+  <div class="carousel-container">
+    <div class="carousel-slide">
+
+      <div class="carousel-item">
+        <img src="immagine1.jpg" alt="Prima immagine">
+        <p>Questa è la descrizione della prima immagine.</p>
+      </div>
+
+      <div class="carousel-item">
+        <img src="immagine2.jpg" alt="Seconda immagine">
+        <p>Questa è la descrizione della seconda immagine.</p>
+      </div>
+
+      <div class="carousel-item">
+        <img src="immagine3.jpg" alt="Terza immagine">
+        <p>Questa è la descrizione della terza immagine.</p>
+      </div>
+
+    </div>
+
+    <div class="carousel-buttons">
+      <button id="prevBtn">⟵ Indietro</button>
+      <button id="nextBtn">Avanti ⟶</button>
+    </div>
+
+  </div>
+
+  <div class="cta-buttons" style="margin-top: 40px;">
+    <a href="index.html" class="button">🏠 Torna alla Home</a>
+  </div>
+
+</section>
+
+<script>
+  const carouselSlide = document.querySelector('.carousel-slide');
+  const carouselItems = document.querySelectorAll('.carousel-item');
+
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  let counter = 0;
+  const size = carouselItems[0].clientWidth;
+
+  function updateCarousel() {
+    carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (counter >= carouselItems.length - 1) return;
+    counter++;
+    updateCarousel();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (counter <= 0) return;
+    counter--;
+    updateCarousel();
+  });
+</script>
+
+</body>
+</html>
