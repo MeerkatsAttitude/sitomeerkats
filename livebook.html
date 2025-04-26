@@ -66,42 +66,13 @@
 <script src="pdfjs/pdf.js"></script>
 
 <script>
-const url = 'manuale.pdf'; // <-- nome corretto del tuo file
+const url = 'manuale.pdf'; // <-- Sostituisci col tuo file PDF corretto se ha nome diverso!
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs/pdf.worker.js';
 
 let pdfDoc = null;
 
-// Carichiamo il PDF PRIMA di avviare Turn.js
-pdfjsLib.getDocument(url).promise.then(function(pdf) {
-  pdfDoc = pdf;
-
-  // Quando il PDF è pronto, allora avviamo Turn.js
-  $('#flipbook').turn({
-    width: window.innerWidth * 0.8,
-    height: window.innerHeight * 0.8,
-    autoCenter: true,
-    elevation: 50,
-    gradients: true,
-    display: 'single',
-    pages: 13,
-    when: {
-      turning: function(event, page, view) {
-        loadPage(page);
-      },
-      turned: function(event, page, view) {
-        if (page > 1) {
-          $('#flipbook').turn('display', 'double');
-        }
-      }
-    }
-  });
-
-  // Carichiamo subito la prima pagina (copertina)
-  loadPage(1);
-});
-
-// Funzione che carica una pagina nel flipbook
+// 1️⃣ Definiamo prima la funzione loadPage
 function loadPage(pageNum) {
   if (!pdfDoc) return;
   if (pageNum < 1 || pageNum > pdfDoc.numPages) return;
@@ -128,6 +99,35 @@ function loadPage(pageNum) {
     });
   });
 }
+
+// 2️⃣ Solo dopo carichiamo il PDF e inizializziamo Turn.js
+pdfjsLib.getDocument(url).promise.then(function(pdf) {
+  pdfDoc = pdf;
+
+  // Quando il PDF è caricato, allora avviamo Turn.js
+  $('#flipbook').turn({
+    width: window.innerWidth * 0.8,
+    height: window.innerHeight * 0.8,
+    autoCenter: true,
+    elevation: 50,
+    gradients: true,
+    display: 'single', // Singola per la copertina
+    pages: 13,
+    when: {
+      turning: function(event, page, view) {
+        loadPage(page); // ora esiste già
+      },
+      turned: function(event, page, view) {
+        if (page > 1) {
+          $('#flipbook').turn('display', 'double'); // Dopo la copertina
+        }
+      }
+    }
+  });
+
+  // Carichiamo subito la prima pagina (copertina)
+  loadPage(1);
+});
 </script>
 
 </body>
