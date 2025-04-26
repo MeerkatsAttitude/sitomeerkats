@@ -27,31 +27,31 @@
       align-items: center;
       justify-content: center;
     }
-    canvas {
+    img {
       width: 100%;
       height: auto;
       object-fit: contain;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
 
 <section id="livebook">
-  <h2 style="color: white;">Il tuo Livebook</h2>
 
   <div id="flipbook"></div>
 
   <div class="cta-buttons" style="margin-top: 40px;">
-    <a href="index.html" class="button">🏠 Torna alla Home</a>
+    <a href="index.html" class="button">Torna alla Home</a>
   </div>
 </section>
 
-<!-- Librerie caricate -->
+<!-- Librerie -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="turnjs/turn.min.js"></script>
 <script src="pdfjs/pdf.js"></script>
 
-<!-- Script per caricare il PDF e creare il flipbook -->
+<!-- Script Flipbook Vero -->
 <script>
 const url = 'manuale.pdf'; // <-- il tuo file PDF corretto
 
@@ -59,7 +59,6 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdfjs/pdf.worker.js';
 
 let pdfDoc = null;
 
-// Carichiamo il PDF
 pdfjsLib.getDocument(url).promise.then(function(pdf) {
   pdfDoc = pdf;
 
@@ -69,7 +68,8 @@ pdfjsLib.getDocument(url).promise.then(function(pdf) {
 
   for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
     pdfDoc.getPage(pageNum).then(function(page) {
-      const viewport = page.getViewport({ scale: 1.2 });
+      const viewport = page.getViewport({ scale: 1.5 });
+
       const canvas = document.createElement('canvas');
       const context = canvas.getContext('2d');
       canvas.width = viewport.width;
@@ -81,13 +81,18 @@ pdfjsLib.getDocument(url).promise.then(function(pdf) {
       };
 
       page.render(renderContext).promise.then(function() {
+        // Converte canvas in immagine base64
+        const img = document.createElement('img');
+        img.src = canvas.toDataURL();
+        
         const pageDiv = document.createElement('div');
         pageDiv.className = 'page';
-        pageDiv.appendChild(canvas);
+        pageDiv.appendChild(img);
         flipbook.appendChild(pageDiv);
 
         loadedPages++;
 
+        // Quando tutte le pagine sono pronte avviamo Turn.js
         if (loadedPages === pdfDoc.numPages) {
           $('#flipbook').turn({
             width: window.innerWidth * 0.8,
