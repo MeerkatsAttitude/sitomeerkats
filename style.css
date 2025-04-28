@@ -43,7 +43,7 @@ p {
 /* Intro (sfondo iniziale) */
 #intro {
   height: 100%;
-  background-image: url('sfondo.png');
+  background-image: url('chi-siamo.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
