@@ -105,7 +105,7 @@ p {
 /* Intro (sfondo iniziale) */
 #intro {
   height: 100%;
-  background-image: url('chi-siamo.png');
+  background-image: url('interface.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
