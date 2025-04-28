@@ -39,38 +39,57 @@ p {
   font-size: 1.2rem;
   line-height: 1.6;
 }
+
 /* Navbar */
 .navbar {
   width: 100%;
-  background-color: #0d0d1a;
+  background-color: #0d0d1a; /* Blu Navy */
   padding: 15px 30px;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
   display: flex;
-  justify-content: center; /* CENTRA il contenuto */
-  align-items: left;
-  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-container {
+  width: 100%;
+  max-width: 1200px;
   display: flex;
   align-items: center;
-  justify-content: center; /* CENTRA */
+  justify-content: space-between; /* LOGO a sinistra + LINKS centrati */
 }
 
 .nav-logo {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .logo-img {
-  height: 50px; /* puoi regolarlo */
+  height: 50px;
   width: auto;
 }
 
+.nav-links {
+  display: flex;
+  justify-content: center;
+  flex: 1; /* OCCUPA spazio centrale */
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: coral;
+}
 
 /* Mobile responsive */
 @media (max-width: 768px) {
@@ -78,13 +97,8 @@ p {
     flex-direction: column;
   }
   .nav-links {
-    margin-top: 10px;
-    display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-  }
-  .nav-links a {
-    margin: 10px;
+    margin-top: 10px;
   }
 }
 
