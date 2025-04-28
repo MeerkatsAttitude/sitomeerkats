@@ -39,6 +39,67 @@ p {
   font-size: 1.2rem;
   line-height: 1.6;
 }
+/* Navbar */
+.navbar {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Nero trasparente */
+  padding: 15px 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.nav-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: coral;
+  text-decoration: none;
+}
+
+.nav-links a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: coral;
+}
+
+/* Per spazio del contenuto sotto la navbar */
+body {
+  padding-top: 80px; /* Spinge il contenuto sotto la navbar */
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+  }
+  .nav-links {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav-links a {
+    margin: 10px;
+  }
+}
 
 /* Intro (sfondo iniziale) */
 #intro {
