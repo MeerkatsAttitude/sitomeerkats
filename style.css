@@ -41,9 +41,10 @@ p {
 }
 
 /* Navbar */
+/* Navbar */
 .navbar {
   width: 100%;
-  background-color: transparent; /* Inizio: trasparente */
+  background-color: #0d0d1a; /* Blu Navy */
   padding: 15px 30px;
   position: fixed;
   top: 0;
@@ -52,14 +53,14 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.4s, box-shadow 0.4s;
+}
 
 .nav-container {
   width: 100%;
   max-width: 1200px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* LOGO a sinistra + LINKS centrati */
 }
 
 .nav-logo {
@@ -72,12 +73,18 @@ p {
   width: auto;
 }
 
+.nav-links {
+  display: flex;
+  justify-content: center;
+  flex: 1; /* OCCUPA spazio centrale */
+  gap: 20px;
+}
+
 .nav-links a {
-  color: #1e90ff; /* BLU all'inizio */
+  color: white;
   text-decoration: none;
   font-weight: 500;
   font-size: 1.1rem;
-  margin-left: 20px;
   transition: color 0.3s;
 }
 
@@ -85,15 +92,17 @@ p {
   color: coral;
 }
 
-/* Navbar attiva quando scrolli */
-.navbar.scrolled {
-  background-color: #0d0d1a; /* Blu navy */
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
 }
 
-.navbar.scrolled .nav-links a {
-  color: white; /* Le scritte diventano bianche */
-}
 
 /* Mobile responsive */
 @media (max-width: 768px) {
