@@ -42,7 +42,7 @@ p {
 /* Navbar */
 .navbar {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: #0d0d1a;
   padding: 15px 30px;
   position: fixed;
   top: 0;
